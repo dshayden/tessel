@@ -1,0 +1,20 @@
+{
+    "name": "splendidtoad/tessel",
+    "description": "A PHP library for creating repeating tiles.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "A.N. Chase",
+            "email": "andy@splendidtoad.com"
+        }
+    ],
+    "require": {
+        "claviska/simpleimage": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "SplendidToad\\Tessel\\": "src"
+        }
+    }
+}
