@@ -58,6 +58,7 @@ class Tessel
         $this->setW($w);
         $this->setH($h);
         $this->setBgColor($bgColor);
+        //TODO bg alpha doesn't actually do anything yet
         $this->setBgAlpha($bgAlpha);
 
     }
@@ -194,5 +195,10 @@ class Tessel
     {
         $this->renderImages();
         return $this->canvas->toFile($file, $mimeType, $quality);
+    }
+
+    public function toDataUri($mimeType = null, $quality = 100) {
+        $this->renderImages();
+        return $this->canvas->toDataUri($mimeType, $quality);
     }
 }

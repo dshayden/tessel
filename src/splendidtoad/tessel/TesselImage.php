@@ -93,7 +93,7 @@ class TesselImage extends SimpleImage
     /**
      * @param mixed $scale
      */
-    public function setScale($scale)
+    private function setScale($scale)
     {
         $this->scale = $scale;
     }
@@ -106,10 +106,15 @@ class TesselImage extends SimpleImage
         return $this->rotation;
     }
 
+    public function rotate($angle, $backgroundColor = 'transparent') {
+        $this->setRotation($angle);
+        parent::rotate($angle, $backgroundColor);
+    }
+
     /**
      * @param mixed $rotation
      */
-    public function setRotation($rotation)
+    private function setRotation($rotation)
     {
         $this->rotation = $rotation;
     }
@@ -124,6 +129,21 @@ class TesselImage extends SimpleImage
 
     }
 
-
+    /**
+     * Given a percentage, resize the image width and height proportionally.
+     * @param $scale
+     * @throws \Exception
+     * @return TesselImage
+     */
+    public function scale($scale) {
+        $this->setScale($scale);
+        if ($scale <= 0) {
+            throw new \Exception("Scale must be greater than zero.");
+        }
+        $newW = round($this->getWidth() * ($scale / 100));
+        $newH = round($this->getHeight() * ($scale / 100));
+        $this->resize($newW, $newH);
+        return $this;
+    }
 
 }
